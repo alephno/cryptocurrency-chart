@@ -9,15 +9,7 @@ const apiURL = 'https://min-api.cryptocompare.com/data/v2/histo';
 
 app.use(express.static('./public'));
 
-let _store = {};
 app.get('/price/:symbol', (req, res) => {
-  const memoKey = JSON.stringify(req.params);
-  if (_store[memoKey]) {
-    res.status(200);
-    res.send(_store[memoKey]);
-    return;
-  }
-
   let {limit, timeframe} = req.params;
   if (!timeframe) {
     timeframe = 'day';
@@ -37,7 +29,6 @@ app.get('/price/:symbol', (req, res) => {
     }
   }).then((response) => {
     res.status(200);
-    _store[memoKey] = response.data.Data;
     res.send(response.data.Data);
   }).catch((error) => {
     res.status(400);

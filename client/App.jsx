@@ -26,7 +26,14 @@ export default class App extends React.Component {
         labels: data.map(point => moment(point.time * 1000).format('MM/DD')),
         datasets: [{
           label: 'BTC',
-          data: data.map(point => point.close)
+          fill: false,
+          data: data.map(point => point.close),
+          borderColor: "#bae755",
+          backgroundColor: "#e755ba",
+          pointBackgroundColor: "#55bae7",
+          pointBorderColor: "#55bae7",
+          pointHoverBackgroundColor: "#55bae7",
+          pointHoverBorderColor: "#55bae7",
         }]
       });
     }).catch(error => console.error(error));

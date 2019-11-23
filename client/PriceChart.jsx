@@ -20,7 +20,6 @@ export default class PriceChart extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.datasets)
     this.renderChart();
   }
 
